@@ -1,106 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>VR Digibloom | Digital Marketing Agency</title>
-<meta name="description" content="VR Digibloom - Performance Marketing, SEO, Google Ads, Meta Ads & Lead Generation Agency">
+    <title>Free PDF Editor</title>
 
-<link rel="stylesheet" href="styles.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs"
+            type="module"></script>
+
+    <!-- pdf-lib -->
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 </head>
 
 <body>
 
-<!-- NAV -->
-<header>
-  <div class="logo">VR DIGIBLOOM</div>
+<header class="topbar">
 
-  <nav id="nav">
-    <a href="#services">Services</a>
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <div class="logo">
+        PDF<span>Editor</span>
+    </div>
 
-  <div class="menu" onclick="toggleMenu()">☰</div>
+    <div class="toolbar">
+
+        <button id="openBtn">
+            📂 Open PDF
+        </button>
+
+        <button id="textBtn">
+            T Text
+        </button>
+
+        <button id="imageBtn">
+            🖼 Image
+        </button>
+
+        <button id="drawBtn">
+            ✏ Draw
+        </button>
+
+        <button id="whiteoutBtn">
+            ⬜ Whiteout
+        </button>
+
+        <button id="undoBtn">
+            ↶ Undo
+        </button>
+
+        <button id="downloadBtn" class="download">
+            ⬇ Download PDF
+        </button>
+
+    </div>
+
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div>
-    <h1>We Grow Brands With Performance Marketing</h1>
-    <p>Google Ads • Meta Ads • SEO • Lead Generation • Funnels</p>
 
-    <div class="buttons">
-      <a href="#contact" class="btn primary">Get Free Strategy Call</a>
-      <a href="#services" class="btn">Our Services</a>
-    </div>
-  </div>
-</section>
+<input
+    type="file"
+    id="pdfInput"
+    accept="application/pdf"
+    hidden
+>
 
-<!-- STATS -->
-<section class="stats">
-  <div>🚀 ROI Focused Campaigns</div>
-  <div>📈 Lead Generation Systems</div>
-  <div>🎯 Conversion Optimization</div>
-  <div>💡 Data Driven Marketing</div>
-</section>
 
-<!-- SERVICES -->
-<section id="services">
-  <h2>Our Services</h2>
+<input
+    type="file"
+    id="imageInput"
+    accept="image/png,image/jpeg,image/webp"
+    hidden
+>
 
-  <div class="grid">
-    <div class="card">Google Ads Management</div>
-    <div class="card">Meta Ads (Facebook & Instagram)</div>
-    <div class="card">SEO Growth Strategy</div>
-    <div class="card">Lead Generation Funnels</div>
-    <div class="card">Landing Page Design</div>
-    <div class="card">Brand Strategy</div>
-  </div>
-</section>
 
-<!-- WORK -->
-<section id="work">
-  <h2>Case Studies</h2>
+<main>
 
-  <div class="case">
-    <h3>E-commerce Growth</h3>
-    <p>300% increase in sales using Meta Ads + retargeting funnels.</p>
-  </div>
+    <aside class="sidebar">
 
-  <div class="case">
-    <h3>Local Business Leads</h3>
-    <p>Generated 500+ monthly leads using Google Ads.</p>
-  </div>
-</section>
+        <h3>Pages</h3>
 
-<!-- ABOUT -->
-<section id="about">
-  <h2>About VR Digibloom</h2>
-  <p>
-    VR Digibloom is a performance marketing agency focused on helping businesses scale
-    through data-driven advertising, SEO systems, and conversion optimization strategies.
-  </p>
-</section>
+        <div id="pageList"></div>
 
-<!-- CONTACT -->
-<section id="contact">
-  <h2>Contact Us</h2>
+    </aside>
 
-  <form action="https://formspree.io/f/your-id" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Your Requirement"></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
 
-<!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/919999999999" target="_blank">💬</a>
+    <section class="workspace">
 
-<script src="script.js"></script>
+        <div id="emptyState">
+
+            <div class="upload-icon">
+                📄
+            </div>
+
+            <h1>Edit your PDF</h1>
+
+            <p>
+                Upload a PDF and edit it directly in your browser.
+            </p>
+
+            <button id="startBtn">
+                Choose PDF
+            </button>
+
+            <small>
+                Your file stays on your device.
+            </small>
+
+        </div>
+
+
+        <div id="editor" class="editor hidden">
+
+            <div id="canvasContainer">
+
+                <canvas id="pdfCanvas"></canvas>
+
+                <canvas id="drawingCanvas"></canvas>
+
+                <div id="elementsLayer"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script type="module" src="app.js"></script>
+
 </body>
 </html>
